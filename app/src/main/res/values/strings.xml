@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">RecyclerViewExample</string>
+
+    <string-array name="locations">
+        <item>Noida</item>
+        <item>New Delhi</item>
+        <item>Trivandrum</item>
+        <item>Chennai</item>
+        <item>Hyderabad</item>
+        <item>Mumbai</item>
+        <item>Pune</item>
+        <item>Kolkata</item>
+    </string-array>
 </resources>
