@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">RecyclerViewExample</string>
 
+    <string-array name="image_uri_list">
+        <item>https://homepages.cae.wisc.edu/~ece533/images/airplane.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/baboon.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/barbara.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/boat.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/cat.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/fruits.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/frymire.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/girl.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/goldhill.png</item>
+        <item>https://homepages.cae.wisc.edu/~ece533/images/monarch.png</item>
+    </string-array>
+
 </resources>

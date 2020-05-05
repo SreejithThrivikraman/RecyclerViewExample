@@ -5,30 +5,43 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.Adapters.RecycleAdapter;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.Sample_Data_Model.contacts;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView R_List;
-
+    List<String> image_list = new ArrayList<>();
 
     public ArrayList<contacts> contact;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Create global configuration and initialize ImageLoader with this config
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
+
 
         R_List = findViewById(R.id.recycle_list);
 
         R_List.setHasFixedSize(true);
 
-        contact = contacts.createContactList(10);
-        
+
+
+        // loading image resources
+        image_list = Arrays.asList(getResources().getStringArray(R.array.image_uri_list));
+        contact = contacts.createContactList(10,image_list);
 
         RecycleAdapter recycleAdapter = new RecycleAdapter(contact);
         R_List.setAdapter(recycleAdapter);

@@ -9,15 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.thrivikraman.sreejith.dev.recyclerviewexample.GlobalApplication;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.R;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.Sample_Data_Model.contacts;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.LocationViewHolder>  {
 
 
     private List<contacts> mContacts;
+
+    // Get the global application context.
+    Context context = GlobalApplication.getAppContext();
 
     // Pass in the contact array into the constructor
     public RecycleAdapter(List<contacts> contacts) {
@@ -42,11 +47,21 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Location
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.LocationViewHolder viewHolder, int position) {
 
-
         contacts cont = mContacts.get(position);
+
         TextView locationName =  viewHolder.LocationName;
+        ImageView contact_image = viewHolder.ContImage;
+
         locationName.setText(cont.getName());
 
+
+        // Image loader - Universal image loader configuration
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).build();
+        ImageLoader.getInstance().init(config);
+
+        // load image.
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(cont.getImage(), contact_image);
     }
 
     @Override
@@ -57,11 +72,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Location
     public static class LocationViewHolder extends RecyclerView.ViewHolder
     {
         public TextView LocationName;
+        public ImageView ContImage;
 
         public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
 
             LocationName = itemView.findViewById(R.id.locationtitle);
+            ContImage = itemView.findViewById(R.id.locimage);
 
         }
     }
