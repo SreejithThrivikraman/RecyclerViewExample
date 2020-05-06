@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.GlobalApplication;
+import com.thrivikraman.sreejith.dev.recyclerviewexample.Interfaces.RecyclerViewItemClick;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.R;
 import com.thrivikraman.sreejith.dev.recyclerviewexample.Sample_Data_Model.contacts;
 import java.util.List;
@@ -20,13 +21,15 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Location
 
 
     private List<contacts> mContacts;
+    private static RecyclerViewItemClick mItemClick;
 
     // Get the global application context.
     Context context = GlobalApplication.getAppContext();
 
     // Pass in the contact array into the constructor
-    public RecycleAdapter(List<contacts> contacts) {
+    public RecycleAdapter(List<contacts> contacts, RecyclerViewItemClick itemClick) {
         mContacts = contacts;
+        this.mItemClick = itemClick;
     }
 
 
@@ -80,6 +83,16 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Location
             LocationName = itemView.findViewById(R.id.locationtitle);
             ContImage = itemView.findViewById(R.id.locimage);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClick.onClick(getAdapterPosition());
+                }
+            });
+
+
         }
+
+
     }
 }
